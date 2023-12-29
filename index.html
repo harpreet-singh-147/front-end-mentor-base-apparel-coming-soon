@@ -1,33 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
   <title>Frontend Mentor | Base Apparel coming soon page</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-  We're coming soon
+  <main class="main">
 
-  Hello fellow shoppers! We're currently building our new fashion store. 
-  Add your email below to stay up-to-date with announcements and our launch deals.
+    <article class="announcement">
+      <form class="announcement__form" novalidate>
+        <img src="images/logo.svg" alt="Company Logo" class="announcement__logo">
+        <div class="announcement__form-img-container">
+          <img src="images/hero-mobile.jpg" alt="" class="announcement__form-img">
+        </div>
+        <h1 class="announcement__form-heading"><span class="announcement__form-heading--emphasis">We're</span> coming
+          soon</h1>
+        <p class="announcement__form-text">Hello fellow shoppers! We're currently building our new fashion store.
+          Add your email below to stay up-to-date with announcements and our launch deals.</p>
+        <fieldset class="announcement__form-input-group">
+          <legend class="hidden">Sign up for updates</legend>
+          <div class="announcement__form-input-container">
+            <input id="email-input" type="email" class="announcement__form-email-input" aria-label="Email Address"
+              aria-describedby="email-error" required>
+            <label for="email-input" class="announcement__form-email-label">Email Address</label>
+            <button class="announcement__form-btn-submit" type="submit" aria-label="Submit Email">
+              <img src="images/icon-arrow.svg" alt="Submit" class="announcement__form-submit-icon">
+            </button>
 
-  Email Address
-  
-  <footer>
-    <p class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="#">Your Name Here</a>.
-    </p>
+            <img id="email-error-icon" src="images/icon-error.svg" alt="" aria-hidden="true"
+              class="announcement__form-error-icon">
+          </div>
+          <span id="email-error" class="announcement__form-error-message" aria-live="polite" aria-hidden="true"></span>
+        </fieldset>
+      </form>
+
+      <div class="announcement__img-container">
+        <img src="images/hero-desktop.jpg" alt="" class="announcement__img">
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+      aria-label="Visit Frontend Mentor Website" rel="noopener noreferrer" referrerpolicy="no-referrer">Frontend
+      Mentor</a>. <br>
+    Coded by <a href="https://github.com/harpreet-singh-147" aria-label="More about Harpreet Singh" target="_blank"
+      rel="noopener noreferrer" referrerpolicy="no-referrer">Harpreet Singh.</a>
   </footer>
+  <script src="script/app.js"></script>
 </body>
+
 </html>
