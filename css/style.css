@@ -345,7 +345,7 @@ body {
     transform: none;
     position: static;
     font-size: 1.1rem;
-    margin-top: 8rem;
+    padding: 8rem 0 2rem 0;
   }
 }
 
@@ -442,7 +442,7 @@ body {
     transform: none;
     position: static;
     font-size: 1.1rem;
-    margin-top: 5rem;
+    margin-top: 0;
   }
 }
 
