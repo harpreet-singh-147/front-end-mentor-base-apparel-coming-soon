@@ -6,21 +6,18 @@ const errorMessage = document.querySelector(
 );
 const errorIcon = document.querySelector('.announcement__form-error-icon');
 
-const makeVisible = el => {
-  el.style.visibility = 'visible';
-  el.style.opacity = 1;
-};
-
-const makeInvisible = el => {
-  el.style.visibility = 'hidden';
-  el.style.opacity = 0;
+const toggleVisibility = (el, isVisible) => {
+  el.style.visibility = isVisible ? 'visible' : 'hidden';
+  el.style.opacity = isVisible ? 1 : 0;
 };
 
 const updateLabelPosition = () => {
-  if (emailInput.value.trim() !== '') {
-    emailInput.classList.add('has-content');
-  } else {
-    emailInput.classList.remove('has-content');
+  emailInput.classList.toggle('has-content', emailInput.value.trim() !== '');
+};
+
+const focusIfEmpty = () => {
+  if (!emailInput.classList.contains('has-content')) {
+    emailInput.focus();
   }
 };
 
@@ -31,59 +28,45 @@ const handleSubmit = e => {
   if (!emailInput.checkValidity()) {
     if (emailInput.validity.valueMissing) {
       showError('This field is required.');
-      if (!emailInput.classList.contains('has-content')) {
-        emailInput.focus();
-      }
     } else if (emailInput.validity.typeMismatch) {
       showError('Please provide a valid email');
-      if (!emailInput.classList.contains('has-content')) {
-        emailInput.focus();
-      }
     }
+    focusIfEmpty();
   } else {
     emailInput.value = '';
     emailInput.classList.remove('has-content');
     hideError();
-    makeInvisible(errorIcon);
   }
 };
 
 const showError = err => {
   errorMessage.textContent = err;
-  makeVisible(errorMessage);
+  toggleVisibility(errorMessage, true);
   errorMessage.removeAttribute('aria-hidden');
-  makeVisible(errorIcon);
+  toggleVisibility(errorIcon, true);
 };
 
 const hideError = () => {
-  makeInvisible(errorMessage);
+  toggleVisibility(errorMessage, false);
   errorMessage.setAttribute('aria-hidden', 'true');
-  makeVisible(errorIcon);
+  toggleVisibility(errorIcon, false);
 };
 
 emailInput.addEventListener('input', () => {
   if (emailInput.value.length > 0) {
     hideError();
-    makeInvisible(errorIcon);
   }
+  updateLabelPosition();
 });
-
-emailInput.addEventListener('input', updateLabelPosition);
 
 emailInput.addEventListener('blur', () => {
   updateLabelPosition();
+  submitBtn.classList.remove('focused');
   if (emailInput.value.trim() === '') {
     hideError();
-    makeInvisible(errorIcon);
   }
 });
 
-emailInput.addEventListener('focus', () => {
-  submitBtn.classList.add('focused');
-});
-
-emailInput.addEventListener('blur', () => {
-  submitBtn.classList.remove('focused');
-});
+emailInput.addEventListener('focus', () => submitBtn.classList.add('focused'));
 
 announcementFormEl.addEventListener('submit', handleSubmit);
